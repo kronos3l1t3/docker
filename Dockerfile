@@ -40,9 +40,8 @@ ENV GLIBCXX_FORCE_NEW=1
 # retain the database directory and the Foxx Application directory
 VOLUME ["/var/lib/arangodb3", "/var/lib/arangodb3-apps"]
 
-COPY docker-entrypoint.sh /entrypoint.sh
-COPY docker-foxx.sh /usr/bin/foxx
-
+COPY docker-entrypoint33.sh /entrypoint.sh
+RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 
 # standard port
