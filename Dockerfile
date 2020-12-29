@@ -40,9 +40,16 @@ ENV GLIBCXX_FORCE_NEW=1
 # retain the database directory and the Foxx Application directory
 VOLUME ["/var/lib/arangodb3", "/var/lib/arangodb3-apps"]
 
+COPY build_docker_library_file.sh /build_docker_library_file.sh
 COPY docker-entrypoint33.sh /entrypoint.sh
+COPY docker-entrypoint34.sh /entrypoint34.sh
+
+
 RUN ["chmod", "+x", "/entrypoint.sh"]
-ENTRYPOINT ["/entrypoint.sh"]
+RUN ["chmod", "+x", "/entrypoint34.sh"]
+RUN ["chmod", "+x", "/build_docker_library_file.sh"]
+
+ENTRYPOINT ["/build_docker_library_file.sh"]
 
 # standard port
 EXPOSE 8529
